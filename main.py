@@ -1,5 +1,6 @@
 import pandas as pd
 import pptx
+from datetime import datetime
 from presentation_generator import generate_presentation_from_template
 
 
@@ -11,7 +12,13 @@ if __name__ =='__main__' :
     raw_df = pd.read_excel(test_excel_path)
     prs = generate_presentation_from_template(prs,raw_df)
 
-    prs.save('./output_data/auto_edited_whoswho_04202023.pptx')
+    # Get today's date
+    today = datetime.now().strftime('%m%d%Y')
+
+    # Update the file path with today's date
+    file_path = f'./output_data/auto_generated_whoswho_{today}.pptx'
+    prs.save(file_path)
+
 
 
 
